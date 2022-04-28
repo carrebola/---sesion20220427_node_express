@@ -35,7 +35,9 @@ router.get('/:id', (req, res) => {
 
 //Añadir una mascota
 router.post('/', jsonParser, (req, res) => {
-    res.send({mensaje: "quieres añadir una mascota",
+    
+  // QUÍ FLATA ESCRIBIR EN BD
+  res.send({mensaje: "quieres añadir una mascota",
   dato:req.body.raza})  
 });
 
