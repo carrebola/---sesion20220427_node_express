@@ -9,14 +9,15 @@ const enrutador = require('./src/enrutador.js')
 //Creamos un objeto express
 const app = express()
 
+// *************** MIDDLEWARES ***************
 //Evitamos problemas de cors cuando accedemos desde distintos dominios
 app.use(cors())
 
-//Creamos una carpeta para páginas estáticas
+//Asociamos la raiz con los archivos que hay en la carpeta public para páginas estáticas
 app.use('/', express.static(__dirname + '/src/public'));
 
-//Llamamos al archivo que contiene las rutas RUTAS
-enrutador.setRutas(app)
+//Las rutas /api las gestionamos desde el archivo enrutador
+app.use('/api', enrutador)
 
 //****** Conexión con la base de datos ******
 const url = "mongodb+srv://carlos_soc_fpllefia:fpllefia_soc_carlos@cluster0.w1e6t.mongodb.net/bdmascotas?retryWrites=true&w=majority";
@@ -28,10 +29,6 @@ mongoose
    })
    .catch(err => console.error(`Connection error ${err}`));
 //*******************************************
-
-
-
-
 
 
 //Escuchamos en puerto 8000

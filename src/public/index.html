@@ -8,5 +8,20 @@
 	</head>
 	<body>
 		<h1>Index estático</h1>
+		<div class="datos">Aqui inyectamos</div>
+
+		<script>
+			const datos = async ()=>{
+				var resultado = await fetch('http://localhost:8000/api/mascotas')
+				var mascotas = await resultado.json(resultado)
+				var html ='<ul>'
+				mascotas.forEach(element => {
+					html+=`<li>${element.nombre}</li>`
+				});
+				html+='</li>'
+				document.querySelector('.datos').innerHTML = html
+			}
+			datos()
+		</script>
 	</body>
 </html>
