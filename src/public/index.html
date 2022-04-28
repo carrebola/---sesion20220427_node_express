@@ -22,6 +22,24 @@
 				document.querySelector('.datos').innerHTML = html
 			}
 			datos()
+
+			const envio = async ()=>{
+				var resultado = await fetch('http://localhost:8000/api/mascotas', {
+    				method: 'POST', // *GET, POST, PUT, DELETE, etc.
+					headers: {
+					'Content-Type': 'application/json'
+					// 'Content-Type': 'application/x-www-form-urlencoded'
+					}, 
+					body: JSON.stringify({
+						nombre:"andres",
+						raza: "conejo"
+					})
+					
+				})
+				var respuesta = await resultado.json(resultado)
+				console.log(respuesta);
+			}
+			envio()
 		</script>
 	</body>
 </html>

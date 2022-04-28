@@ -1,8 +1,18 @@
 
 const express = require('express')
+//para convertir los datos del cuerpo de las peticiones post en objetos json
+const  bodyParser = require('body-parser')
+
+const app = express()
 const router = express.Router()
 const Mascota = require('./../../modelos/mascota');
 
+//parseo de json
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 //Leer MASCOTAS
 router.get('/', (req, res)=>{
@@ -22,8 +32,12 @@ router.get('/:id', (req, res) => {
     res.status(200).json(mascota);
   });
 });
-//Añadir una mascota
 
+//Añadir una mascota
+router.post('/', jsonParser, (req, res) => {
+    res.send({mensaje: "quieres añadir una mascota",
+  dato:req.body.raza})  
+});
 
 
 module.exports = router
